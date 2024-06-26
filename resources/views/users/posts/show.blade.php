@@ -124,6 +124,17 @@
 
                     {{-- strtotime() --> is a builtin function in PHP use to convert the time and date into human readable format  --}}
 
+                        {{-- Share Buttons --}}
+                    <div style="text-align: right">
+                        {{-- LINE Share Button --}}
+                        <a href="https://social-plugins.line.me/lineit/share?url={{ urlencode(route('post.show', $post->id)) }}" class="btn btn-success btn-sm" target="_blank">
+                            <i class="fa-brands fa-line"></i> Share on LINE
+                        </a>
+                        {{-- Twitter Share Button --}}
+                        <a href="https://x.com/intent/tweet?url={{ urlencode(route('post.show', $post->id)) }}" class="btn btn-dark btn-sm" target="_blank">
+                            <i class="fa-brands fa-x-twitter"></i> Share on X
+                        </a>
+                    </div>
 
                     {{-- Comments Section --}}
                     <div class="mt-4">
