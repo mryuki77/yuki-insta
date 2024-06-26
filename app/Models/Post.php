@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use HasFactory,Softdeletes;
+    use HasFactory,SoftDeletes;
 
     // A posts belongs to a user
     // Use this method to get the owner of the post
