@@ -1,7 +1,12 @@
 {{--Clickable image--}}
 <div class="container p-0">
     <a href="{{route('post.show',$post->id)}}">
-        <img src="{{$post->image}}" alt="post id {{$post->id}}" class="w-100">
+        @if (strpos($post->image,'data:image')===0)
+            <img src="{{$post->image}}" alt="post id {{$post->id}}" class="w-100 image">
+        @else
+            <video controls autoplay loop class="w-100 image" src="data:video/mp4;base64{{$post->image}}" type="{{$post->image_type}}">
+        @endif
+        
     </a>
     <div class="card-body">
         {{--heart icon + no of likes + categories--}}

@@ -29,13 +29,25 @@ class PostController extends Controller
         $request->validate([
             'category'=>'required|array|between:1,3',
             'description'=>'required|min:1|max:1000',
-            'image'=>'required|mimes:jpeg,jpg,png,gif|max:1048'
+            'image'=>'required|file|mimes:jpeg,jpg,png,gif,mp4,m4v,mov|max:1048576'
         ]);
 
         #Save the post details
         $this->post->user_id=Auth::user()->id; //owner of the post
-        $this->post->image='data:image/'.$request->image->extension().';base64,'.
-        base64_encode(file_get_contents($request->image));
+        // $this->post->image='data:image/'.$request->image->extension().';base64,';
+
+        if($request->hasfile('image')){
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+            $mimeType=$file->getMimeType();
+
+            $prefix=strpos($mimeType,'video') !== false ? 'data:video/':'data:image/';
+            $mediaData=$prefix.$extension.';base64,'.base64_encode(file_get_contents($file));
+
+            $this->post->image=$mediaData;
+        }
+
+        // base64_encode(file_get_contents($request->image));
         $this->post->description=$request->description;
         $this->post->save();
 

@@ -17,7 +17,11 @@
 
     <div class="row border shadow">
         <div class="col p-0 border-end">
-            <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="w-100">
+        @if (strpos($post->image,'data:image')===0)
+            <img src="{{$post->image}}" alt="post id {{$post->id}}" class="w-100 image">
+        @else
+            <video controls autoplay loop class="w-100 image" src="data:video/mp4;base64{{$post->image}}" type="{{$post->image_type}}">
+        @endif
         </div>
         <div class="col-4 px-0 bg-white">
             <div class="card bord-0">
@@ -124,7 +128,7 @@
 
                     {{-- strtotime() --> is a builtin function in PHP use to convert the time and date into human readable format  --}}
 
-                        {{-- Share Buttons --}}
+                            {{-- Share Buttons --}}
                     <div style="text-align: right">
                         {{-- LINE Share Button --}}
                         <a href="https://social-plugins.line.me/lineit/share?url={{ urlencode(route('post.show', $post->id)) }}" class="btn btn-success btn-sm" target="_blank">

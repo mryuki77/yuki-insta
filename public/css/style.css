@@ -62,3 +62,8 @@
    font-size:3.5rem;
 }
 
+.image{
+   height: 600px;
+   object-fit: cover;
+}
+

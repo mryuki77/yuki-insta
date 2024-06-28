@@ -31,10 +31,10 @@
         </div>
 
         <div class="mb-4">
-            <label for="image" class="form-label fw-bold">Image</label>
-            <input type="file" name="image" id="image" class="form-control" aria-describedby="image-info">
+            <label for="image" class="form-label fw-bold">Image/Movie</label>
+            <input type="file" name="image" id="image" class="form-control" aria-describedby="image-info" accept="image/jpeg,image/png,image/gif,video/mp4,video/x-m4v,video/quicktime">
             <div class="form-text" id="image-info">
-                The accpetable formats are jpeg,jpg,png,and gif only.<br>
+                The accpetable formats are jpeg,jpg,png,gif,mp4,x-m4v,and quicktime only.<br>
                 Max file size is 1048Kb.
             </div>
         @error('image')
